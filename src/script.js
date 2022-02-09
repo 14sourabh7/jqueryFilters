@@ -38,11 +38,26 @@ $(document).ready(function () {
       os: "Windows",
     },
   ];
+  var selectElement =
+    "   <div class='filters'>" +
+    " <select name='Operating System' id='os'>" +
+    " <option value=''>ALL</option>" +
+    "<option value='android'>Android</option>" +
+    "<option value='ios'>IOS</option>" +
+    "<option value='windows'>Windows</option>" +
+    "</select>" +
+    "<select id='brand' name='brand'>" +
+    " <option value=''>ALL</option>" +
+    "<option value='Apple'>Apple</option>" +
+    "<option value='Samsung'>Samsung</option>" +
+    "<option value='motorola'>Motorola</option>" +
+    "<option value='asus'>ASUS</option>" +
+    "</select>" +
+    "</div>";
 
-  // table element start
   table =
     "<table id='myTable'> <thead thead ><tr><th>ID</th><th>Name</th><th>Brand</th><th>Operating System</th><th>Remove</th></tr></thead>";
-  // table columns
+
   for (let i = 0; i < products.length; i++) {
     table +=
       "<tr><td>" +
@@ -56,9 +71,18 @@ $(document).ready(function () {
       "</td><td id='hide'>X</td></tr>";
   }
 
-  $("#table").html(table + "</table"); //table end here
+  var searchBar =
+    "<label for='searchInput'>" +
+    "<input id='searchInput' type='text' placeholder='Search..' />" +
+    "</label>";
+
+  // adding html
+  $("#wrapper").append(selectElement);
+  $("#wrapper").append(table + "</table");
+  $("#wrapper").append(searchBar);
 
   // function to hide element
+
   $("#wrapper").on("click", "#hide", function () {
     $(this).parent().hide();
   });
