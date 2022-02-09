@@ -25,6 +25,18 @@ $(document).ready(function () {
       brand: "Samsung",
       os: "Android",
     },
+    {
+      id: "104",
+      name: "Google Nexus",
+      brand: "ASUS",
+      os: "Android",
+    },
+    {
+      id: "105",
+      name: "Surface",
+      brand: "Microsoft",
+      os: "Windows",
+    },
   ];
 
   // table element start
