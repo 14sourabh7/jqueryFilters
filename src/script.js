@@ -39,20 +39,20 @@ $(document).ready(function () {
     },
   ];
   var selectElement =
-    "   <div class='filters'>" +
+    "   <div class='filters' ><label for 'os> Select operating system" +
     " <select name='Operating System' id='os'>" +
     " <option value=''>ALL</option>" +
     "<option value='android'>Android</option>" +
     "<option value='ios'>IOS</option>" +
     "<option value='windows'>Windows</option>" +
-    "</select>" +
-    "<select id='brand' name='brand'>" +
+    "</select></label>" +
+    "<label for='brand'> Select brand <select id='brand' name='brand'>" +
     " <option value=''>ALL</option>" +
     "<option value='Apple'>Apple</option>" +
     "<option value='Samsung'>Samsung</option>" +
     "<option value='motorola'>Motorola</option>" +
     "<option value='asus'>ASUS</option>" +
-    "</select>" +
+    "</select></label>" +
     "</div>";
 
   var table =
