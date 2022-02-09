@@ -55,7 +55,7 @@ $(document).ready(function () {
     "</select>" +
     "</div>";
 
-  table =
+  var table =
     "<table id='myTable'> <thead thead ><tr><th>ID</th><th>Name</th><th>Brand</th><th>Operating System</th><th>Remove</th></tr></thead>";
 
   for (let i = 0; i < products.length; i++) {
