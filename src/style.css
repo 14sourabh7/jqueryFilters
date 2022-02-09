@@ -1,25 +1,45 @@
 #wrapper {
-  width: 70%;
+  width: 90%;
   margin: auto;
 }
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
-  margin: 10px 0px;
+  margin: 15px 0px;
 }
 
 td,
-th {
+th,
+tr {
   border: 1px solid #dddddd;
-  text-align: left;
+  text-align: center;
   padding: 8px;
+  height: 40px;
+}
+th {
+  background-color: black;
+  color: white;
+}
+tr:nth-child(odd) {
+  background-color: #eeeeee;
+}
+td:hover {
+  background-color: gainsboro;
+}
+#searchInput {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  width: 80%;
+  height: 30px;
 }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
+.filters {
+  display: flex;
+  justify-content: space-around;
 }
-#myInput {
-  margin: auto;
-  width: 80%;
+.filters > select {
+  width: 40%;
+  padding: 10px;
 }

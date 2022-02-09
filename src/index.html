@@ -6,19 +6,23 @@
 
   <body>
     <div id="wrapper">
-      <select name="Operating System" id="os">
-        <option value="">ALL</option>
-        <option value="android">Android</option>
-        <option value="ios">IOS</option>
-      </select>
-      <select id="brand" name="brand">
-        <option value="">ALL</option>
-        <option value="Apple">Apple</option>
-        <option value="Samsung">Samsung</option>
-        <option value="motorola">Motorola</option>
-      </select>
+      <div class="filters">
+        <select name="Operating System" id="os">
+          <option value="">ALL</option>
+          <option value="android">Android</option>
+          <option value="ios">IOS</option>
+        </select>
+        <select id="brand" name="brand">
+          <option value="">ALL</option>
+          <option value="Apple">Apple</option>
+          <option value="Samsung">Samsung</option>
+          <option value="motorola">Motorola</option>
+        </select>
+      </div>
       <div id="table"></div>
-      <input id="myInput" type="text" placeholder="Search.." />
+      <label for="searchInput">
+        <input id="searchInput" type="text" placeholder="Search.." />
+      </label>
     </div>
     <script src="jQuery.js"></script>
     <script src="script.js"></script>
