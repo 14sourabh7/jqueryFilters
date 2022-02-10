@@ -38,20 +38,22 @@ $(document).ready(function () {
       os: "Windows",
     },
   ];
+  var displayProducts = products;
   var selectElement =
     "   <div class='filters' ><label for 'os> Select operating system" +
     " <select name='Operating System' id='os'>" +
-    " <option value=''>ALL</option>" +
+    " <option value='all'>ALL</option>" +
     "<option value='android'>Android</option>" +
     "<option value='ios'>IOS</option>" +
     "<option value='windows'>Windows</option>" +
     "</select></label>" +
     "<label for='brand'> Select brand <select id='brand' name='brand'>" +
-    " <option value=''>ALL</option>" +
+    " <option value='all'>ALL</option>" +
     "<option value='Apple'>Apple</option>" +
     "<option value='Samsung'>Samsung</option>" +
     "<option value='motorola'>Motorola</option>" +
     "<option value='asus'>ASUS</option>" +
+    "<option value='microsoft'>Microsoft</option>" +
     "</select></label>" +
     "</div>";
 
@@ -64,15 +66,35 @@ $(document).ready(function () {
 
   for (let i = 0; i < products.length; i++) {
     table +=
-      "<tr><td>" +
+      "<tr><td class='pid'>" +
       products[i].id +
-      "</td><td>" +
+      "</td><td class='pname'>" +
       products[i].name +
       "</td><td>" +
       products[i].brand +
       "</td><td>" +
       products[i].os +
       "</td><td id='hide'>X</td></tr>";
+  }
+  function display(products) {
+    var table =
+      "<thead thead ><tr><th>" +
+      "ID</th><th>Name</th><th>Brand</th>" +
+      "<th>Operating System</th>" +
+      "<th>Remove</th></tr></thead>";
+    for (let i = 0; i < products.length; i++) {
+      table +=
+        "<tr class='pid'><td>" +
+        products[i].id +
+        "</td><td class='pname'>" +
+        products[i].name +
+        "</td><td>" +
+        products[i].brand +
+        "</td><td>" +
+        products[i].os +
+        "</td><td id='hide'>X</td></tr>";
+    }
+    $("#myTable").html(table + "</table");
   }
 
   var searchBar =
@@ -91,27 +113,58 @@ $(document).ready(function () {
     $(this).parent().hide();
   });
 
-  // function to filter OS
-  $("#wrapper").on("click", "#os", function () {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function () {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-    });
-  });
+  // function to filter based on select
+  $("#wrapper").on("click", "select", function () {
+    var os = $("#os").val();
+    var brand = $("#brand").val();
 
-  // function to filter brand
-  $("#wrapper").on("click", "#brand", function () {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function () {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-    });
+    if (os && brand) {
+      displayProducts = products; //array
+
+      if (os == "all" && brand == "all") {
+        console.log("all", os, brand);
+      }
+      if (os != "all" && brand == "all") {
+        displayProducts = displayProducts.filter(
+          (item) => item.os.toLocaleLowerCase() == os.toLocaleLowerCase()
+        );
+        console.log("os", os, brand);
+      } else if (os == "all" && brand != "all") {
+        displayProducts = displayProducts.filter(
+          (item) => item.brand.toLocaleLowerCase() == brand.toLocaleLowerCase()
+        );
+        console.log("brand", os, brand);
+      }
+      if (os != "all" && brand != "all") {
+        displayProducts = displayProducts.filter(
+          (item) =>
+            item.os.toLocaleLowerCase() == os.toLocaleLowerCase() &&
+            item.brand.toLocaleLowerCase() == brand.toLocaleLowerCase()
+        );
+        console.log("brandin", "os", os, brand);
+      }
+
+      console.log("array", displayProducts);
+      display(displayProducts);
+    }
   });
 
   // function to search element
   $("#wrapper").on("keyup", "#searchInput", function () {
     var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function () {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-    });
+
+    if (!isNaN(value)) {
+      $("#myTable tbody tr .pid ").filter(function () {
+        $(this)
+          .parent()
+          .toggle($(this).text().toLowerCase().indexOf(value) > -1);
+      });
+    } else {
+      $("#myTable tbody tr .pname ").filter(function () {
+        $(this)
+          .parent()
+          .toggle($(this).text().toLowerCase().indexOf(value) > -1);
+      });
+    }
   });
 });
